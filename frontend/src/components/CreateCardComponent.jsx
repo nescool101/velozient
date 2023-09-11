@@ -139,6 +139,16 @@ class CreateCardComponent extends Component {
         }));
     }
 
+    copyPasswordToClipboard = () => {
+        const passwordInput = document.getElementById('passwordInput');
+
+        if (passwordInput) {
+            passwordInput.select();
+            document.execCommand('copy');
+        }
+    }
+
+
     render() {
         return (
             <div>
@@ -152,11 +162,13 @@ class CreateCardComponent extends Component {
                                     <div className="form-group">
                                         <label>Name:</label>
                                         <input
+                                            type="text"
                                             placeholder="Name"
                                             name="name"
                                             className="form-control"
                                             value={this.state.name}
                                             onChange={this.changeNameHandler}
+                                            autoComplete="new-name"
                                         />
                                     </div>
                                     <div className="form-group">
@@ -207,11 +219,13 @@ class CreateCardComponent extends Component {
                                     <div className="form-group">
                                         <label>Username:</label>
                                         <input
+                                            type="text"
                                             placeholder="Username"
                                             name="username"
                                             className="form-control"
                                             value={this.state.username}
                                             onChange={this.changeUsernameHandler}
+                                            autoComplete="new-username"
                                         />
                                     </div>
                                     <div className="form-group">
@@ -233,6 +247,13 @@ class CreateCardComponent extends Component {
                                                     onClick={this.togglePasswordVisibility}
                                                 >
                                                     {this.state.isPasswordVisible ? 'Hide' : 'Show'}
+                                                </button>
+                                                <button
+                                                    className="btn btn-outline-secondary"
+                                                    type="button"
+                                                    onClick={this.copyPasswordToClipboard}
+                                                >
+                                                    Copy
                                                 </button>
                                             </div>
                                         </div>

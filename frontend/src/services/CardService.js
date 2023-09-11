@@ -16,6 +16,10 @@ class CardService {
         return axios.get(CARD_API_BASE_URL + '/' + cardId);
     }
 
+    getCardByName(cardName){
+        return axios.get(CARD_API_BASE_URL + '/name/' + cardName);
+    }
+
     updateCard(card, cardId){
         return axios.put(CARD_API_BASE_URL + '/' + cardId, card);
     }

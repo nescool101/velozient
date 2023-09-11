@@ -50,6 +50,18 @@ func GetCard(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Card with ID %s not found", params["id"])
 }
 
+func GetCardByName(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	for _, card := range cards {
+		if card.Name == params["name"] {
+			json.NewEncoder(w).Encode(card)
+			return
+		}
+	}
+	fmt.Fprintf(w, "Card with Name %s not found", params["id"])
+}
+
 func UpdateCard(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
